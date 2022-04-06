@@ -1,0 +1,25 @@
+name = "ng-cf-ssr"
+type = "javascript"
+route = ''
+zone_id = ''
+usage_model = ''
+compatibility_flags = []
+workers_dev = true
+compatibility_date = "2022-04-04"
+
+account_id = ""
+
+# main = "./dist/app/worker/main.js"
+
+# https://developers.cloudflare.com/workers/cli-wrangler/configuration/#site
+[site]
+bucket = "./dist/app/browser"
+entry-point = "."
+
+[build]
+# command = "ng run app:worker"
+command = "ng run app:worker:production"
+# command = "echo skip build"
+
+[build.upload]
+format = "service-worker"
