@@ -1,11 +1,11 @@
-import { isPlatformBrowser } from '@angular/common';
-import { isPlatformServer } from '@angular/common';
 import { Inject } from '@angular/core';
 import { PLATFORM_ID } from '@angular/core';
 import { Component } from '@angular/core';
-import { map, interval, merge, of, Observable } from 'rxjs';
+import { map, Observable, timer } from 'rxjs';
 
 type platform = 'server' | 'browser';
+type Async<T> = Observable<T> | Promise<T>;
+
 
 @Component({
   selector: 'app-root',
@@ -23,7 +23,10 @@ type platform = 'server' | 'browser';
         Page rendered from {{ platform }} at {{ time | date: "hh:mm:ss" }} !
       </li>
       <li>
-        Current time is {{ time$ | async | date: "hh:mm:ss" }}
+        Observable test: Current time is {{ time$ | async | date: "hh:mm:ss" }}
+      </li>
+      <li>
+        Network test: You ip is {{ ip$ | async }}
       </li>
     </ul>
     <router-outlet></router-outlet>
@@ -35,17 +38,16 @@ export class AppComponent {
 
   time = new Date();
 
-  time$ = interval(1000).pipe(map(() => new Date()));
-  // time$ = merge(of(new Date), interval(1000).pipe(map(() => new Date())));
-  // time$: Observable<Date>;
+  time$: Async<Date>;
+  ip$: Async<string>;
 
   constructor(@Inject(PLATFORM_ID) public platform: platform) {
-    // if (isPlatformBrowser(platform)) {
-    //   this.time$ = merge(of(new Date), interval(1000).pipe(map(() => new Date())));
-    // }
-    // // server
-    // else {
-    //   this.time$ = of(new Date);
-    // }
+    this.time$ = timer(0, 1000).pipe(map(() => new Date()));
+
+    this.ip$ = this.getIp();
+  }
+
+  getIp() {
+    return fetch('https://api64.ipify.org').then(r => r.text())
   }
 }
