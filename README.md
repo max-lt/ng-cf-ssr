@@ -1,5 +1,7 @@
 # Angular SSR with Cloudflare workers
 
+UPDATE : Using Angular with Cloudflare workers is [now much easier than it used to be](https://www.lechat.dev/blog/2024/angular-ssr-with-cloudflare-pages-and-bun), this example project will be archived.  
+
 ## Limitations
 
 - You will have a lot of timeout error when running `wrangler dev`, just keep trying
