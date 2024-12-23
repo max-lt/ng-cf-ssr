@@ -1,6 +1,6 @@
 # Angular SSR with Cloudflare workers
 
-UPDATE : Using Angular with Cloudflare workers is [now much easier than it used to be](https://www.lechat.dev/blog/2024/angular-ssr-with-cloudflare-pages-and-bun), this example project will be archived.  
+UPDATE : Using Angular with Cloudflare workers is [now much easier than it used to be](https://www.lechat.dev/blog/2024/angular-ssr-with-cloudflare-pages-and-bun), this example project will be archived, you can follow instructions of this new repo: https://github.com/max-lt/ng19-cf-ssf  
 
 ## Limitations
 
